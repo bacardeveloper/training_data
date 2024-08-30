@@ -1,0 +1,18 @@
+{
+  "name": "training_data_",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "jszip": "^3.10.1",
+    "nodemon": "^3.1.4",
+    "xlsx-populate": "^1.21.0"
+  }
+}
