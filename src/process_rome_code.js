@@ -1,9 +1,13 @@
 exports.processRomeCode = (data) => {
+  if (data === "codes_romes") {
+    return "domaine_activité";
+  }
+
   if (!data || data.length === 0 || data === undefined || data === null) {
     return "non renseigné";
   }
 
-  let codeRomeFirstLetter = a.toLowerCase().split("")[0];
+  let codeRomeFirstLetter = data.toLowerCase().split("")[0];
   return romeCategory[codeRomeFirstLetter];
 };
 

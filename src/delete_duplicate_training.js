@@ -1,5 +1,7 @@
 const ExcelJS = require("exceljs");
 const getGroupedTrainingLevels = require("./groupedTrainingLevels");
+const { processRomeCode } = require("./process_rome_code");
+const updateTrainingLocation = require("./updateTrainingLocation");
 
 const deleteDuplicateTraining = async (filePath) => {
   let dataBrut = await _retrieve_data_lines(filePath);
@@ -28,7 +30,14 @@ const deleteDuplicateTraining = async (filePath) => {
         console.log(dataBrut[i][10].toString().toLowerCase());
       }
       let groupeTraining = getGroupedTrainingLevels(dataBrut[i][10]);
-      dataBrut[i].push(groupeTraining);
+      let groupeDomaine = processRomeCode(dataBrut[i][25]);
+      let cityName = dataBrut[i][18];
+      let getLocalisation = updateTrainingLocation(cityName);
+      dataBrut[i][10] = groupeTraining;
+      dataBrut[i][25] = groupeDomaine;
+      dataBrut[i][19] = getLocalisation["lon"];
+      dataBrut[i][20] = getLocalisation["lat"];
+
       withoutDuplicate.push(dataBrut[i]);
     }
   }
